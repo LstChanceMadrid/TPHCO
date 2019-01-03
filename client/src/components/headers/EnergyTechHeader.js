@@ -2,27 +2,25 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 
 
-class EnergyTechheader extends Component {
+export default class EnergyTechheader extends Component {
 
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.question}>Is this email not displaying correctly?</Text>
                 <Text style={styles.browser}>View it in your browser.</Text>
-                <View style={styles.logoTitle}>
-                    <Text>Image</Text>
-                    <Text>ENERGY TECH WEEKLY</Text>
-                </View>
+                <Image style={styles.logo} resizeMode={'contain'} source={require('../../styles/images/tphco.png')} />
             </View>
         )
     }
 }
 
-export default EnergyTechHeader
+
 
 const styles = StyleSheet.create({
     container : {
-        padding: 10
+        padding: 10,
+        backgroundColor: 'rgba(0, 0, 100, 1)'
     },
     question : {
         color: 'rgba(255, 255, 255, 1)',
@@ -32,5 +30,12 @@ const styles = StyleSheet.create({
     browser : {
         color : 'rgba(255, 100, 100, 1)',
         fontSize : 8,
-    }
+    },
+    logo: {
+        width: 300,
+        height: 200,
+        tintColor: 'rgba(255, 255, 255, 1)',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      }
 })

@@ -4,12 +4,15 @@ import {StyleSheet, Text, View} from 'react-native';
 
 class StocksHeader extends Component {
     render() {
+        let monthDay = new Date().toDateString().split(" ")
+        let month = monthDay[1]
+        let day = monthDay[2]
+
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>STOCKS</Text>
 
-                <Text style={styles.date}>MONTH DAY</Text>
-                
+                <Text style={styles.date}>{month} {day}</Text>
             </View>
         )
     }

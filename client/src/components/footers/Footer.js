@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Navigation } from 'react-native-navigation';
 
 
 class Footer extends Component {
@@ -11,11 +12,21 @@ class Footer extends Component {
         const footerLayout = (middleButton) => {
             return (
                 <View style={styles.container}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => Navigation.push(this.props.component, {
+                        component: {
+                            name: 'EnergyTechWeekly'
+                        }
+                    } )}>
                         <Text style={styles.buttonText}>Energy Technology</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => {
+                        if (false) {
+                            // go to the website
+                        } else {
+                            Navigation.pop(this.props.componentId)
+                        }
+                    }}>
                         <Text style={styles.buttonText}>{middleButton}</Text>
                     </TouchableOpacity>
 

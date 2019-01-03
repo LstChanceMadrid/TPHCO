@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as screen from '../constants/screenLayouts'
 import News from './news/NewsContainer'
@@ -34,7 +34,7 @@ export default class Dashboard extends Component {
       
       <Image style={styles.logo} resizeMode={'contain'} source={require('../styles/images/tphco.png')} />
 
-      <Footer componentId={this.props.componentId}/>
+      <Footer component={this.props.componentId}/>
       </View>
     );
   }

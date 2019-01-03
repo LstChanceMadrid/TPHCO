@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView, Text, View} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import StocksHeader from '../headers/StocksHeader'
 import Stock from './Stock'
 

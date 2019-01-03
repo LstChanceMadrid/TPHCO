@@ -39,7 +39,7 @@ class Stock extends Component {
                         symbol: stockCompany.symbol,
                         name : stockCompany.companyName,
                         date : stockChartIntra[lengthMinute - 1].date,
-                        changeOverTime : stockChartDay[lengthDay-1].close - stockChartIntra[lengthMinute - 1].close,
+                        changeOverTime : stockChartIntra[lengthMinute - 1].close - stockChartDay[lengthDay-1].close, 
                         current : stockChartIntra[lengthMinute - 1].close
                     }
                 })
