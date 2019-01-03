@@ -6,28 +6,33 @@ class Footer extends Component {
     render() {
         let middleButton
 
-        if ("Dashboard" === "Dashboard") {
-            let middleButton = "Go To TPH Website"
-        } else {
-            let middleButton = "Go To Dashboard"
+        const footerLayout = (middleButton) => {
+            return (
+                <View style={styles.container}>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>Energy Technology</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>{middleButton}</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>Upcoming TPH/PWP Event Schedule</Text>
+                    </TouchableOpacity>
+                </View>
+            )
         }
+        if ("Dashboard" !== "Dashboard") {
+            let middleButton = "Go To TPH Website"
 
+            return footerLayout(middleButton)
 
-        return (
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Energy Technology</Text>
-                </TouchableOpacity>
+        } else {
+            let middleButton = "Back To Home Screen"
 
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>{middleButton}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Upcoming TPH/PWP Event Schedule</Text>
-                </TouchableOpacity>
-            </View>
-        )
+            return footerLayout(middleButton)
+        }
     } 
 }
 
