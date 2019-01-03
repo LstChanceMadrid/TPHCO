@@ -19,7 +19,7 @@ class Stock extends Component {
     componentWillMount = () => {
         axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chart => {
             const stockChart = chart.data
-            let length = chart.data.length
+            let length = stockChart.length
 
             axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/company`).then(company => {
                 const stockCompany = company.data
@@ -31,7 +31,8 @@ class Stock extends Component {
                         symbol: stockCompany.symbol,
                         name : stockCompany.companyName,
                         date : stockChart[length - 1].date,
-                        marketChangeOverTime : stockChart[length - 1].marketChangeOverTime
+                        changeOverTime : stockChart[length - 1].changeOverTime,
+                        close : stockChart[length-1].close
                     }
                 })
             })
@@ -45,12 +46,13 @@ class Stock extends Component {
     render() {
         
         let date = this.state.stock.date
-        let marketChangeOverTime = this.state.stock.marketChangeOverTime
+        let changeOverTime = this.state.stock.changeOverTime
         let name = this.state.stock.name
         let symbol = this.state.stock.symbol
+        let close = this.state.stock.close
 
-        if (marketChangeOverTime > 0) {
-           let positiveChangeOverTime = `+${parseFloat(marketChangeOverTime).toFixed(3)}`
+        if (changeOverTime > 0) {
+           let positiveChangeOverTime = `+${parseFloat(changeOverTime).toFixed(3)}`
            
            return (
             <View style={styles.container}>
@@ -65,7 +67,7 @@ class Stock extends Component {
                 </View>
 
                 <View style={styles.stockPrice}>
-                    <Text style={styles.current}>{date}</Text>
+                    <Text style={styles.current}>{close}</Text>
 
                     <View style={styles.positiveFlux}>
                         <Text style={{flex: 1, color: 'white'}}>{positiveChangeOverTime}</Text>
@@ -74,7 +76,7 @@ class Stock extends Component {
             </View>
             )
         } else {
-            let negativeChangeOverTime = parseFloat(marketChangeOverTime).toFixed(3)
+            let negativeChangeOverTime = parseFloat(changeOverTime).toFixed(3)
 
             return (
                 <View style={styles.container}>
@@ -89,7 +91,7 @@ class Stock extends Component {
                     </View>
 
                     <View style={styles.stockPrice}>
-                        <Text style={styles.current}>{date}</Text>
+                        <Text style={styles.current}>{close}</Text>
 
                         <View style={styles.negativeFlux}>
                             <Text style={{color: 'white'}}>{negativeChangeOverTime}</Text>
