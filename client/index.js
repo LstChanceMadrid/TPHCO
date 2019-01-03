@@ -39,7 +39,7 @@ _retrieveAsyncStorageLoginStatus = async () => {
             Navigation.setRoot({
                 root : {
                     stack: {
-                        id: 'PreLoginStack',
+                        id: 'AcceptTermsStack',
                         children: [
                             {component : screen.termsOfService},
                             {component : screen.agreeToTerms}

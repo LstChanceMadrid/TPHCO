@@ -4,6 +4,15 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 class Footer extends Component {
     render() {
+        let middleButton
+
+        if ("Dashboard" === "Dashboard") {
+            let middleButton = "Go To TPH Website"
+        } else {
+            let middleButton = "Go To Dashboard"
+        }
+
+
         return (
             <View style={styles.container}>
                 <TouchableOpacity style={styles.button}>
@@ -11,7 +20,7 @@ class Footer extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Go to TPH Website</Text>
+                    <Text style={styles.buttonText}>{middleButton}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}>
@@ -19,7 +28,7 @@ class Footer extends Component {
                 </TouchableOpacity>
             </View>
         )
-    }
+    } 
 }
 
 export default Footer
