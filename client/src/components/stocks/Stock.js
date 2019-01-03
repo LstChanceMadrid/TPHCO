@@ -17,12 +17,20 @@ class Stock extends Component {
 
     
     componentWillMount = () => {
-        axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chart => {
-            const stockChart = chart.data
-            let length = stockChart.length
+        axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/company`).then(company => {
+            const stockCompany = company.data
 
-            axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/company`).then(company => {
-                const stockCompany = company.data
+            axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1m`).then(chartDay => {
+
+                const stockChartDay = chartDay.data
+                const lengthDay = stockChartDay.length
+                
+
+            axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chartMinute => {
+                const stockChartIntra = chartMinute.data
+                let lengthMinute = stockChartIntra.length
+
+            
 
 
                 this.setState({
@@ -30,13 +38,14 @@ class Stock extends Component {
                     stock: {
                         symbol: stockCompany.symbol,
                         name : stockCompany.companyName,
-                        date : stockChart[length - 1].date,
-                        changeOverTime : stockChart[length - 1].changeOverTime,
-                        close : stockChart[length-1].close
+                        date : stockChartIntra[lengthMinute - 1].date,
+                        changeOverTime : stockChartDay[lengthDay-1].close - stockChartIntra[lengthMinute - 1].close,
+                        current : stockChartIntra[lengthMinute - 1].close
                     }
                 })
             })
         })
+    })
     }
 
 
@@ -49,7 +58,7 @@ class Stock extends Component {
         let changeOverTime = this.state.stock.changeOverTime
         let name = this.state.stock.name
         let symbol = this.state.stock.symbol
-        let close = this.state.stock.close
+        let current = this.state.stock.current
 
         if (changeOverTime > 0) {
            let positiveChangeOverTime = `+${parseFloat(changeOverTime).toFixed(3)}`
@@ -67,7 +76,7 @@ class Stock extends Component {
                 </View>
 
                 <View style={styles.stockPrice}>
-                    <Text style={styles.current}>{close}</Text>
+                    <Text style={styles.current}>{current}</Text>
 
                     <View style={styles.positiveFlux}>
                         <Text style={{flex: 1, color: 'white'}}>{positiveChangeOverTime}</Text>
@@ -91,7 +100,7 @@ class Stock extends Component {
                     </View>
 
                     <View style={styles.stockPrice}>
-                        <Text style={styles.current}>{close}</Text>
+                        <Text style={styles.current}>{current}</Text>
 
                         <View style={styles.negativeFlux}>
                             <Text style={{color: 'white'}}>{negativeChangeOverTime}</Text>
