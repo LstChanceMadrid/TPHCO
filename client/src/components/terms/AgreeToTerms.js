@@ -28,6 +28,7 @@ export default class AgreeToTerms extends Component {
         stack: {
           id: 'PostLoginStack',
           children: [
+            {component : screen.energyTechWeekly},
             {component: screen.dashboard}
           ]
         }

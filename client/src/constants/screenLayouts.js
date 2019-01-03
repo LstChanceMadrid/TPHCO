@@ -93,3 +93,20 @@ export const dashboard = {
         }
     }
 }
+
+
+export const energyTechWeekly = {
+    id: 'EnergyTechWeekly',
+    name: 'EnergyTechWeekly',
+    options: {
+        title: {
+            text: 'EnergyTechWeekly'
+        },
+        topBar: {
+            visible: 'false',
+            title: {
+                text: 'EnergyTechWeekly'
+            }
+        }
+    }
+}

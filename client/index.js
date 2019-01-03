@@ -10,6 +10,7 @@ import Login from './src/components/authentication/Login'
 import Register from './src/components/authentication/Register'
 import TermsOfService from './src/components/terms/TermsOfService';
 import Dashboard from './src/components/Dashboard';
+import EnergyTechWeekly from './src/components/EnergyTechWeekly';
 
 
 const initialState = {
@@ -30,6 +31,7 @@ Navigation.registerComponentWithRedux('Register', () => Register, Provider, stor
 Navigation.registerComponentWithRedux('TermsOfService', () => TermsOfService, Provider, store)
 Navigation.registerComponentWithRedux('Login', () => Login, Provider, store)
 Navigation.registerComponentWithRedux('Dashboard', () => Dashboard, Provider, store)
+Navigation.registerComponentWithRedux('EnergyTechWeekly', () => EnergyTechWeekly, Provider, store)
 
 _retrieveAsyncStorageLoginStatus = async () => {
     try {

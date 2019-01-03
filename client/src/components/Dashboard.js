@@ -10,6 +10,13 @@ import Footer from './footers/Footer'
 
 export default class Dashboard extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      ...this.state
+    }
+  }
+
   goToScreen = (screenName) => {
     Navigation.push(this.props.componentId, {
       component: {
@@ -27,7 +34,7 @@ export default class Dashboard extends Component {
       
       <Image style={styles.logo} resizeMode={'contain'} source={require('../styles/images/tphco.png')} />
 
-      <Footer />
+      <Footer componentId={this.props.componentId}/>
       </View>
     );
   }

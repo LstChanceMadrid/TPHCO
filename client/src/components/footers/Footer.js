@@ -3,9 +3,11 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 
 class Footer extends Component {
-    render() {
-        let middleButton
 
+    
+
+
+    render() {
         const footerLayout = (middleButton) => {
             return (
                 <View style={styles.container}>
