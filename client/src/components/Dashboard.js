@@ -1,0 +1,52 @@
+import React, {Component} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import * as screen from '../constants/screenLayouts'
+import News from './news/NewsContainer'
+import StocksContainer from './stocks/StocksContainer'
+import Footer from './footers/Footer'
+
+
+
+export default class Dashboard extends Component {
+
+  goToScreen = (screenName) => {
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: screenName
+      }
+    })
+  }
+  
+  render() {
+    return (
+      <View style={styles.container}>
+
+      <StocksContainer />
+      <News />
+      
+      <Image style={styles.logo} resizeMode={'contain'} source={require('../styles/images/tphco.png')} />
+
+      <Footer />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 1)',
+    justifyContent: 'center',
+  },
+  logo: {
+    width: 300,
+    height: 200,
+    // tintColor: 'rgba(0, 0, 0, 1)',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+  text : {
+    color: 'white'
+  }
+})
