@@ -28,36 +28,39 @@ export default class Login extends Component {
   render() {
 
     
-const authenticate = async () => {
-  let usernameOrEmail = this.state.usernameOrEmail
-  let password = this.state.password
-  
-  await axios.post('http://localhost:5000/login', {
-    usernameOrEmail : usernameOrEmail,
-    password : password
-  }).then(response => {
+    const authenticate = async () => {
+      let usernameOrEmail = this.state.usernameOrEmail
+      let password = this.state.password
+      
+      await axios.post('http://localhost:5000/login', {
+        usernameOrEmail : usernameOrEmail,
+        password : password
+      }).then(response => {
 
-      // if (response.data.isAuthenticated) {
+          // if (response.data.isAuthenticated) {
 
-          // vvvvv REPLACE THE BELOW AFTER TESTING
-        if (true) { // <<<<< REPLACE THIS AFTER TESTING
-          // ^^^^^ REPLACE THE ABOVE AFTER TESTING
-        Navigation.push(this.props.componentId, {
-          component: {
-            name: 'AgreeToTerms'
+              // vvvvv REPLACE THE BELOW AFTER TESTING
+            if (response.data.isAuthenticated) { // <<<<< REPLACE THIS AFTER TESTING
+              // ^^^^^ REPLACE THE ABOVE AFTER TESTING
+            Navigation.push(this.props.componentId, {
+              component: {
+                name: 'AgreeToTerms'
+              }
+            })
+          } else {
+            this.setState({
+              ...this.state,
+              errorMessage: response.data.errorMessage
+            })
           }
-        })
-      } else {
-        return
-      }
-  })
-}
+      })
+    }
 
     return (
       <View style={styles.container}>
         <View style={styles.loginContainer}>
           <Text style={styles.title}>Login</Text>
-          <Text>{this.state.hello}{this.state.username}</Text>
+          <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
 
           <TextInput style={styles.input} placeholder="Username or Email" placeholderTextColor='rgba(0, 0, 0, 0.5)' autoCapitalize='none' onChangeText={(usernameOrEmail) => this.setState({...this.state, usernameOrEmail})}></TextInput>
           
@@ -130,4 +133,8 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto'
   },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center'
+  }
 })

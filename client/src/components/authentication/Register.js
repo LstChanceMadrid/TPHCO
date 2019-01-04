@@ -10,7 +10,8 @@ export default class Register extends Component {
     super(props)
     
     this.state = {
-      firstName : ''
+      firstName : '',
+      errorMessage: ''
     }
   }
   
@@ -35,22 +36,56 @@ export default class Register extends Component {
   }
 
   render() {
+
+    const authenticate = async () => {
+      await axios.post('http://localhost:5000/register', {
+        username : this.state.username,
+        email : this.state.email,
+        firstName : this.state.firstName,
+        lastName : this.state.lastName,
+        company : this.state.company,
+        position : this.state.position,
+        password : this.state.password
+      }).then(response => {
+
+        if (response.data.isAuthenticated) {
+          Navigation.push(this.props.componentId, {
+            component: {
+              name: 'AgreeToTerms'
+            }
+          })
+        } else {
+          console.log('hi')
+          this.setState({
+            ...this.state,
+            errorMessage : response.data.errorMessage
+          })
+        }
+      })
+    }
+
     return (
       <View style={styles.container}>
         <View style={styles.registerContainer}>
           <Text style={styles.title}>Register</Text>
+          <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+          <TextInput style={styles.input} placeholder="Username" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(username) => this.setState({...this.state, username})}></TextInput>
 
-          <TextInput style={styles.input} placeholder="Email" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Email" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(email) => this.setState({...this.state, email})}></TextInput>
 
-          <TextInput style={styles.input} name="firstname" onChange={this.name} placeholder="First Name" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' value={this.state.firstName}></TextInput>
+          <View style={styles.nameContainer}>
+            <TextInput style={styles.name} placeholder="First Name" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(firstName) => this.setState({...this.state, firstName})}></TextInput>
 
-          <TextInput style={styles.input} placeholder="Last Name" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+            <TextInput style={styles.name} placeholder="Last Name" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(lastName) => this.setState({...this.state, lastName})}></TextInput>
+          </View>
 
-          <TextInput style={styles.input} placeholder="Company" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Company" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(company) => this.setState({...this.state, company})}></TextInput>
           
-          <TextInput style={styles.input} placeholder="Position" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Position" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(position) => this.setState({...this.state, position})}></TextInput>
 
-          <TouchableOpacity style={styles.registerButton} onPress={() => this.goToScreen('AgreeToTerms')}>
+          <TextInput style={styles.input} placeholder="Password" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(password) => this.setState({...this.state, password})}></TextInput>
+
+          <TouchableOpacity style={styles.registerButton} onPress={() => authenticate()}>
             <Text style={styles.registerButtonText}>Register</Text>
           </TouchableOpacity>
           
@@ -79,6 +114,21 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center'
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 20
+  },
+  name : {
+    width: '45%',
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 1)',
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    fontSize: 20,
   },
   input: {
     borderWidth: 1,
@@ -117,4 +167,8 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto'
   },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center'
+  }
 })
