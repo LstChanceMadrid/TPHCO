@@ -9,7 +9,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: ''
+      ...this.state
     }
   }
 
@@ -37,8 +37,8 @@ const authenticate = async () => {
   let password = this.state.password
   
   await axios.post('http://localhost:5000/login', {
-    usernameOrEmail : "testusername",
-    password : "testpassword"
+    usernameOrEmail : usernameOrEmail,
+    password : password
   }).then(response => {
 
         if (response.data.isAuthenticated) {  
@@ -59,29 +59,11 @@ const authenticate = async () => {
                   }
               }
           })
-
       } else {
-          // Navigation.setRoot({
-          //     root : {
-          //         stack: {
-          //             options: {
-          //                 topBar: {
-          //                     visible: 'false'
-          //                 }
-          //             },
-          //             id: 'PreLoginStack',
-          //             children: [
-          //                 {component : screen.register},
-          //                 {component : screen.login}
-          //             ]
-          //         }
-          //     }
-          // })
-          return
+        return
       }
   })
 }
-
 
     return (
       <View style={styles.container}>
@@ -89,9 +71,9 @@ const authenticate = async () => {
           <Text style={styles.title}>Login</Text>
           <Text>{this.state.hello}{this.state.username}</Text>
 
-          <TextInput style={styles.input} placeholder="Username" placeholderTextColor='rgba(0, 0, 0, 0.5)' autoCapitalize='none' onChangeText={(username) => this.setState({...this.state, username})}></TextInput>
+          <TextInput style={styles.input} placeholder="Username or Email" placeholderTextColor='rgba(0, 0, 0, 0.5)' autoCapitalize='none' onChangeText={(usernameOrEmail) => this.setState({...this.state, usernameOrEmail})}></TextInput>
           
-          <TextInput style={styles.input} placeholder="Password" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Password" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(password) => this.setState({...this.state, password})}></TextInput>
 
           <TouchableOpacity style={styles.loginButton} onPress={() => authenticate()}>
             <Text style={styles.loginButtonText}>Login</Text>
