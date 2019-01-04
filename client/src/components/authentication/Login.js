@@ -13,10 +13,6 @@ export default class Login extends Component {
     }
   }
 
-  componentWillMount = () => {
-
-  }
-
   goToScreen = (screenName) => {
     Navigation.push(this.props.componentId, {
       component: {
@@ -41,24 +37,12 @@ const authenticate = async () => {
     password : password
   }).then(response => {
 
-        if (response.data.isAuthenticated) {  
-          
-          Navigation.setRoot({
-              root : {
-                  stack: {
-                      options: {
-                          topBar: {
-                              visible: 'false'
-                          }
-                      },
-                      id: 'PostLoginStack',
-                      children: [
-                        {component: screen.energyTechWeekly},
-                        {component : screen.dashboard}
-                      ]
-                  }
-              }
-          })
+      if (response.data.isAuthenticated) {  
+        Navigation.push(this.props.componentId, {
+          component: {
+            name: 'AgreeToTerms'
+          }
+        })
       } else {
         return
       }
