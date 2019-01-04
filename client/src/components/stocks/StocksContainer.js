@@ -14,7 +14,7 @@ class StocksContainer extends Component {
                     <Stock  symbol={'aapl'} />
                     <Stock symbol={'goog'} />
                     <Stock symbol={'tsla'} />
-                    
+                    <Stock symbol={'brk.a'} />
                 </ScrollView>
             </View>
         )

@@ -37,7 +37,11 @@ const authenticate = async () => {
     password : password
   }).then(response => {
 
-      if (response.data.isAuthenticated) {  
+      // if (response.data.isAuthenticated) {
+
+          // vvvvv REPLACE THE BELOW AFTER TESTING
+        if (true) { // <<<<< REPLACE THIS AFTER TESTING
+          // ^^^^^ REPLACE THE ABOVE AFTER TESTING
         Navigation.push(this.props.componentId, {
           component: {
             name: 'AgreeToTerms'

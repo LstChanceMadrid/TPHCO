@@ -21,31 +21,26 @@ class Stock extends Component {
             const stockCompany = company.data
 
             axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1m`).then(chartDay => {
-
                 const stockChartDay = chartDay.data
                 const lengthDay = stockChartDay.length
                 
+                axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chartMinute => {
+                    const stockChartIntra = chartMinute.data
+                    let lengthMinute = stockChartIntra.length
 
-            axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chartMinute => {
-                const stockChartIntra = chartMinute.data
-                let lengthMinute = stockChartIntra.length
-
-            
-
-
-                this.setState({
-                    ...this.state,
-                    stock: {
-                        symbol: stockCompany.symbol,
-                        name : stockCompany.companyName,
-                        date : stockChartIntra[lengthMinute - 1].date,
-                        changeOverTime : stockChartIntra[lengthMinute - 1].close - stockChartDay[lengthDay-1].close, 
-                        current : stockChartIntra[lengthMinute - 1].close
-                    }
+                    this.setState({
+                        ...this.state,
+                        stock: {
+                            symbol: stockCompany.symbol,
+                            name : stockCompany.companyName,
+                            date : stockChartIntra[lengthMinute - 1].date,
+                            changeOverTime : stockChartIntra[lengthMinute - 1].close - stockChartDay[lengthDay-1].close, 
+                            current : stockChartIntra[lengthMinute - 1].close
+                        }
+                    })
                 })
             })
         })
-    })
     }
 
 
@@ -79,7 +74,7 @@ class Stock extends Component {
                     <Text style={styles.current}>{current}</Text>
 
                     <View style={styles.positiveFlux}>
-                        <Text style={{flex: 1, color: 'white'}}>{positiveChangeOverTime}</Text>
+                        <Text style={{color: 'white'}}>{positiveChangeOverTime}</Text>
                     </View>
                 </View>
             </View>
