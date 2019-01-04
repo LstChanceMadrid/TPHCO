@@ -87,10 +87,12 @@ export const dashboard = {
         },
         topBar: {
             visible: 'false',
-            title: {
-                text: 'Dashboard'
+        },
+        children : [{
+            component : {
+                name : "EnergyTechWeekly"
             }
-        }
+        }]
     }
 }
 
@@ -104,9 +106,6 @@ export const energyTechWeekly = {
         },
         topBar: {
             visible: 'false',
-            title: {
-                text: 'EnergyTechWeekly'
-            }
         }
     }
 }

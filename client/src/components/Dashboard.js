@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 1)',
     justifyContent: 'center',
+    paddingBottom: 75
   },
   logo: {
     width: 300,

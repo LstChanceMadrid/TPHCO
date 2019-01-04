@@ -5,26 +5,29 @@ import { Navigation } from 'react-native-navigation';
 
 class Footer extends Component {
 
-    
-
-
     render() {
+
         const footerLayout = (middleButton) => {
             return (
                 <View style={styles.container}>
                     <TouchableOpacity style={styles.button} onPress={() => Navigation.push(this.props.component, {
                         component: {
-                            name: 'EnergyTechWeekly'
+                            name: 'EnergyTechWeekly',
+                            options: {
+                                topBar : {
+                                    visible : 'false'
+                                }
+                            }
                         }
                     } )}>
                         <Text style={styles.buttonText}>Energy Technology</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button} onPress={() => {
-                        if (false) {
+                        if (this.props.component === "Dashboard") {
                             // go to the website
                         } else {
-                            Navigation.pop(this.props.componentId)
+                            Navigation.pop(this.props.component)
                         }
                     }}>
                         <Text style={styles.buttonText}>{middleButton}</Text>
@@ -36,7 +39,7 @@ class Footer extends Component {
                 </View>
             )
         }
-        if ("Dashboard" !== "Dashboard") {
+        if (this.props.component === "Dashboard") {
             let middleButton = "Go To TPH Website"
 
             return footerLayout(middleButton)
@@ -54,6 +57,8 @@ export default Footer
 const styles = StyleSheet.create({
     container : {
         flex: 1,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

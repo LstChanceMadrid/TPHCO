@@ -33,20 +33,28 @@ export default class Login extends Component {
 
     
 const authenticate = async () => {
-  await axios.get('http://localhost:5000/').then(response => {  
-        if (true) {  
+  let usernameOrEmail = this.state.usernameOrEmail
+  let password = this.state.password
+  
+  await axios.post('http://localhost:5000/login', {
+    usernameOrEmail : "testusername",
+    password : "testpassword"
+  }).then(response => {
+
+        if (response.data.isAuthenticated) {  
           
           Navigation.setRoot({
               root : {
                   stack: {
                       options: {
                           topBar: {
-                              visible: 'true'
+                              visible: 'false'
                           }
                       },
                       id: 'PostLoginStack',
                       children: [
-                          {component : screen.dashboard}
+                        {component: screen.energyTechWeekly},
+                        {component : screen.dashboard}
                       ]
                   }
               }
@@ -81,9 +89,9 @@ const authenticate = async () => {
           <Text style={styles.title}>Login</Text>
           <Text>{this.state.hello}{this.state.username}</Text>
 
-          <TextInput style={styles.input} placeholder="Username" placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(username) => this.setState({...this.state, username})}></TextInput>
+          <TextInput style={styles.input} placeholder="Username" placeholderTextColor='rgba(0, 0, 0, 0.5)' autoCapitalize='none' onChangeText={(username) => this.setState({...this.state, username})}></TextInput>
           
-          <TextInput style={styles.input} placeholder="Password" placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Password" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
 
           <TouchableOpacity style={styles.loginButton} onPress={() => authenticate()}>
             <Text style={styles.loginButtonText}>Login</Text>

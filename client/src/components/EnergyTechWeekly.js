@@ -1,15 +1,26 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import EnergyTechHeader from './headers/EnergyTechHeader';
 import Footer from './footers/Footer';
+import EnergyTechMainStory from './news/EnergyTechMainStory'
 
 
 class EnergyTechWeekly extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            ...this.state
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <EnergyTechHeader />
-                <Footer />
+                <ScrollView>
+                    <EnergyTechHeader />
+                    <EnergyTechMainStory />
+                </ScrollView>
+                <Footer component={this.props.componentId}/>
             </View>
         )
     }
@@ -20,7 +31,9 @@ export default EnergyTechWeekly
 
 const styles = StyleSheet.create({
     container : {
-        padding: 10
+        padding: 0,
+        backgroundColor: 'rgba(106, 109, 142, 1)',
+        paddingBottom: 75
     },
     question : {
         color: 'rgba(255, 255, 255, 1)',
@@ -30,5 +43,10 @@ const styles = StyleSheet.create({
     browser : {
         color : 'rgba(255, 100, 100, 1)',
         fontSize : 8,
+    },
+    title: {
+        color: 'rgba(125, 251, 250, 1)',
+        fontWeight: 'bold',
+        fontSize: 14
     }
 })

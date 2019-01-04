@@ -40,15 +40,15 @@ export default class Register extends Component {
         <View style={styles.registerContainer}>
           <Text style={styles.title}>Register</Text>
 
-          <TextInput style={styles.input} placeholder="Email" placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Email" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
 
-          <TextInput style={styles.input} name="firstname" onChange={this.name} placeholder="First Name" placeholderTextColor='rgba(0, 0, 0, 0.5)' value={this.state.firstName}></TextInput>
+          <TextInput style={styles.input} name="firstname" onChange={this.name} placeholder="First Name" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' value={this.state.firstName}></TextInput>
 
-          <TextInput style={styles.input} placeholder="Last Name" placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Last Name" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
 
-          <TextInput style={styles.input} placeholder="Company" placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Company" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
           
-          <TextInput style={styles.input} placeholder="Position" placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
+          <TextInput style={styles.input} placeholder="Position" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)'></TextInput>
 
           <TouchableOpacity style={styles.registerButton} onPress={() => this.goToScreen('AgreeToTerms')}>
             <Text style={styles.registerButtonText}>Register</Text>
