@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import axios from 'axios'
+import StockGraph from './StockGraph'
 
 
 class Stock extends Component {
@@ -60,15 +61,19 @@ class Stock extends Component {
            
            return (
             <View style={styles.container}>
+            <ScrollView horizontal={true}>
                 <View style={styles.stockInfo}>
+                
                     <Text style={styles.symbol}>{symbol}</Text>
 
                     <Text style={styles.name}>{name}</Text>
                 </View>
-
-                <View>
-                    <Text style={{color: 'white'}}>Graph</Text>
+                </ScrollView>
+                
+                <View style={styles.chartWrapper}>
+                    <StockGraph graphColor={'green'}/>
                 </View>
+                
 
                 <View style={styles.stockPrice}>
                     <Text style={styles.current}>{current}</Text>
@@ -85,13 +90,15 @@ class Stock extends Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.stockInfo}>
-                        <Text style={styles.symbol}>{symbol}</Text>
+                    <ScrollView horizontal={true}>
+                    <Text style={styles.symbol}>{symbol}</Text>
 
-                        <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.name}>{name}</Text>
+                    </ScrollView>
                     </View>
 
-                    <View>
-                        <Text style={{color: 'white'}}>Graph</Text>
+                    <View style={styles.chartWrapper}>
+                        <StockGraph graphColor={'red'} />
                     </View>
 
                     <View style={styles.stockPrice}>
@@ -113,6 +120,7 @@ const styles = StyleSheet.create({
     container : {
         flex : 1,
         flexDirection: 'row',
+        width: '100%',
         padding: 5,
         borderBottomWidth: 2,
         borderBottomColor: 'rgba(25, 25, 25, 1)'
@@ -162,6 +170,10 @@ const styles = StyleSheet.create({
         width: 75,
         height: 12,
         paddingRight: 2, 
+    },
+    chartWrapper: {
+        flex: 1,
+        padding: 10,
     }
 
 })
