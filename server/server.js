@@ -51,8 +51,6 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-    // let emailOrUsername = JSON.stringify(req.body.emailOrUsername)
-    // console.log(emailOrUsername)
     let usernameOrEmail = req.body.usernameOrEmail
     let password = req.body.password
     console.log(req.body.emailOrUsername)

@@ -16,6 +16,14 @@ export default class AgreeToTerms extends Component {
   goToScreen = (screenName) => {
     Navigation.push(this.props.componentId, {
       component: {
+        options: {
+          topBar: {
+            visible: 'true',
+            title: {
+              text: 'Terms of Service'
+            }
+          }
+        },
         name: screenName
       }
     })
