@@ -71,7 +71,7 @@ class Stock extends Component {
                 
                     <Text style={styles.symbol}>{symbol}</Text>
 
-                    <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.name} numberOfLines={1} ellipsizeMode={"tail"}>{name}</Text>
                 </View>
 
                 <View style={styles.chartWrapper}>

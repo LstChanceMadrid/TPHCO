@@ -51,9 +51,9 @@ export default class AgreeToTerms extends Component {
         <View>
           <Text style={styles.welcome}>Welcome to the TPH Energy News App! By clicking OK, you accept</Text>
 
-          <View style={styles.termsButtonContainer}>
-            <Button color='rgba(110, 90, 25, 1)' title="(Terms of Service)" accessibilityLabel="Terms of Service" onPress={() => this.goToScreen("TermsOfService")} />
-          </View>
+          <TouchableOpacity style={styles.termsButtonContainer}>
+            <Text style={styles.termsButtonText} accessibilityLabel="Terms of Service" onPress={() => this.goToScreen("TermsOfService")}>(Terms of Service)</Text>
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.buttonContainer} onPress={() => this.acceptTerms()}>
@@ -108,5 +108,12 @@ const styles = StyleSheet.create({
   termsButtonContainer: {
     padding: 0,
     margin: 0,
+  },
+  termsButtonText: {
+    padding: 5,
+    paddingBottom: 15,
+    color: 'rgba(110, 90, 25, 1)',
+    textAlign: 'center',
+    fontSize: 22
   }
 });

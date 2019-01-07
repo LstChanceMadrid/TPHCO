@@ -61,6 +61,11 @@ export default styles = StyleSheet.create({
         fontSize : 20,
         fontWeight: 'bold'
     },
+    sHLink : {
+        fontSize: 8,
+        fontStyle: "italic",
+        color: 'rgba(110, 90, 25, 1)'
+    },
     nHContainer : {
         backgroundColor : 'rgba(15, 15, 15, 1)',
         padding: 10

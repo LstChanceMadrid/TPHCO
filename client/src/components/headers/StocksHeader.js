@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Linking, Text, View} from 'react-native';
 import styles from './styles/styles'
 
 
@@ -18,8 +18,8 @@ class StocksHeader extends Component {
                 </View>
 
                 <View style={styles.sHRight}>
-                    <Text style={styles.sHDisclaimer}>Data provided for free by IEX.</Text>
-                    <Text style={styles.sHDisclaimer}>View IEX’s Terms of Use.</Text>
+                    <Text style={styles.sHDisclaimer}>Data provided for free by <Text style={styles.sHLink} onPress={() => Linking.openURL('https://iextrading.com/developer/')}>IEX</Text>.</Text>
+                    <Text style={styles.sHDisclaimer}>View IEX’s <Text style={styles.sHLink} onPress={() => Linking.openURL('https://iextrading.com/api-exhibit-a/')}>Terms of Use</Text>.</Text>
                 </View>
             </View>
         )

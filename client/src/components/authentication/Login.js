@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import {StyleSheet, TextInput, Text, View, Image, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as screen from '../../constants/screenLayouts'
 
@@ -37,22 +37,18 @@ export default class Login extends Component {
         password : password
       }).then(response => {
 
-          // if (response.data.isAuthenticated) {
-
-              // vvvvv REPLACE THE BELOW AFTER TESTING
-            if (response.data.isAuthenticated) { // <<<<< REPLACE THIS AFTER TESTING
-              // ^^^^^ REPLACE THE ABOVE AFTER TESTING
-            Navigation.push(this.props.componentId, {
-              component: {
-                name: 'AgreeToTerms'
-              }
-            })
-          } else {
-            this.setState({
-              ...this.state,
-              errorMessage: response.data.errorMessage
-            })
-          }
+        if (response.data.isAuthenticated) {
+        Navigation.push(this.props.componentId, {
+          component: {
+            name: 'AgreeToTerms'
+            }
+          })
+        } else {
+          this.setState({
+            ...this.state,
+            errorMessage: response.data.errorMessage
+          })
+        }
       })
     }
 

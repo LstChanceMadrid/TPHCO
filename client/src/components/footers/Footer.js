@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Linking, Text, View, TouchableOpacity} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import styles from './styles/styles'
 
@@ -33,7 +33,7 @@ class Footer extends Component {
 
                     <TouchableOpacity style={styles.button} onPress={() => {
                         if (this.props.component === "Dashboard") {
-                            // go to the website
+                            {Linking.openURL('https://www.tphco.com/')}
                         } else {
                             Navigation.pop(this.props.component)
                         }
@@ -49,7 +49,7 @@ class Footer extends Component {
         }
         if (this.props.component === "Dashboard") {
             let middleButton = "Go To TPH Website"
-
+            
             return footerLayout(middleButton)
 
         } else {

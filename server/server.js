@@ -1,16 +1,14 @@
-const express = require('express')
-
 const axios = require('axios')
-const pgp = require('pg-promise')();
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const express = require('express')
+const pgp = require('pg-promise')();
 const secret = require('./secrets')
 
 const app = express()
-const port = process.env.PORT || 5000
 const DATABASE_URL = secret.databaseSecret
 const db = pgp(DATABASE_URL);
-
+const port = process.env.PORT || 5000
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -68,6 +66,17 @@ app.post('/login', (req, res) => {
         }
     }).catch(e => console.log('alt error', e))
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
