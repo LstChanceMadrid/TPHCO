@@ -8,7 +8,7 @@ export default class EnergyTechAltStory extends Component {
         <TouchableOpacity style={styles.titleContainer}>
             <Text style={styles.titleText}>Title of Story</Text>
         </TouchableOpacity>
-        <Image />
+        <Image style={styles.image} resizeMode={'contain'} source={require('../../styles/images/tph-block.png')} />
         <Text style={styles.story} numberOfLines={10} ellipsizeMode={'tail'}>body of the story</Text>
       </View>
     )
@@ -19,18 +19,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '45%',
-        padding: 5
+        padding: 5,
+        width: '100%'
     },
     titleContainer: {
         padding: 5
     },
     titleText: {
-        fontSize: 22,
+        fontSize: 18,
         color: 'rgba(255, 150, 100, 1)'
     },
     story: {
         color: 'white'
+    },
+    image: {
+        width: '80%',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 })

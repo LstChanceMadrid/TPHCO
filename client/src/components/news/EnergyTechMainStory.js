@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     },
     paragraph : {
         fontSize : 12,
+        color: 'white'
     }
 })
