@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import EnergyTechHeader from './headers/EnergyTechHeader';
 import Footer from './footers/Footer';
 import EnergyTechMainStory from './news/EnergyTechMainStory'
-
+import EnergyTechAltStoryContainer from './news/EnergyTechAltStoryContainer'
 
 class EnergyTechWeekly extends Component {
     constructor(props) {
@@ -19,6 +19,7 @@ class EnergyTechWeekly extends Component {
                 <ScrollView>
                     <EnergyTechHeader />
                     <EnergyTechMainStory />
+                    <EnergyTechAltStoryContainer />
                 </ScrollView>
                 <Footer component={this.props.componentId}/>
             </View>

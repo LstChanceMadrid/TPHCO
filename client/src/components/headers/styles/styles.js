@@ -62,7 +62,7 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     sHLink : {
-        fontSize: 8,
+        fontSize: 9,
         fontStyle: "italic",
         color: 'rgba(110, 90, 25, 1)'
     },
