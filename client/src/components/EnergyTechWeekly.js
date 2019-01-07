@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     container : {
         padding: 0,
         backgroundColor: 'rgba(106, 109, 142, 1)',
-        paddingBottom: 75
+        paddingBottom: 75,
+        minHeight: '100%'
     },
     question : {
         color: 'rgba(255, 255, 255, 1)',

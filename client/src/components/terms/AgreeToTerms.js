@@ -49,7 +49,7 @@ export default class AgreeToTerms extends Component {
         <Image style={styles.logo} resizeMode={'contain'} source={require('../../styles/images/tphco.png')} />
         
         <View>
-          <Text style={styles.welcome}>Welcome to the TPH Energy News App! By clicking OK, you accept{screen.termsOfService.name}</Text>
+          <Text style={styles.welcome}>Welcome to the TPH Energy News App! By clicking OK, you accept</Text>
 
           <View style={styles.termsButtonContainer}>
             <Button color='rgba(110, 90, 25, 1)' title="(Terms of Service)" accessibilityLabel="Terms of Service" onPress={() => this.goToScreen("TermsOfService")} />

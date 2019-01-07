@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import styles from './styles/styles'
 
 
 class StocksHeader extends Component {
@@ -9,35 +10,20 @@ class StocksHeader extends Component {
         let day = monthDay[2]
 
         return (
-            <View style={styles.container}>
-                <Text style={styles.title}>STOCKS</Text>
+            <View style={styles.sHContainer}>
+                <View style={styles.sHLeft}>
+                    <Text style={styles.sHTitle}>STOCKS</Text>
 
-                <Text style={styles.date}>{month} {day}</Text>
+                    <Text style={styles.sHDate}>{month} {day}</Text>
+                </View>
+
+                <View style={styles.sHRight}>
+                    <Text style={styles.sHDisclaimer}>Data provided for free by IEX.</Text>
+                    <Text style={styles.sHDisclaimer}>View IEX’s Terms of Use.</Text>
+                </View>
             </View>
         )
     }
 }
 
 export default StocksHeader
-
-const styles = StyleSheet.create({
-    container : {
-        position: 'absolute',
-        top: 0,
-        width: '100%',
-        backgroundColor : 'rgba(15, 15, 15, 1)',
-        padding: 10,
-        paddingTop: 40,
-        zIndex: 2
-    },
-    title : {
-        color: 'rgba(255, 255, 255, 1)',
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-    date : {
-        color : 'rgba(150, 150, 150, 1)',
-        fontSize : 20,
-        fontWeight: 'bold'
-    }
-})

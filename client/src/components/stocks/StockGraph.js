@@ -1,60 +1,54 @@
-import React, {Component} from 'react';
-import Svg,{
-    Circle,
-    Ellipse,
-    G,
-    Text,
-    TSpan,
-    TextPath,
-    Path,
-    Polygon,
-    Polyline,
-    Line,
-    Rect,
-    Use,
-    Image,
-    Symbol,
-    Defs,
-    LinearGradient,
-    RadialGradient,
-    Stop,
-    ClipPath,
-    Pattern,
-    Mask,
-} from 'react-native-svg';
+import React from 'react'
+import { Path, Defs, LinearGradient, Stop } from 'react-native-svg'
+import { AreaChart, Grid } from 'react-native-svg-charts'
+import * as shape from 'd3-shape'
+import axios from 'axios'
 
-/* Use this if you are using Expo
-import { Svg } from 'expo';
-const { Circle, Rect } = Svg;
-*/
+class StockGraph extends React.PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            ...this.state
+        }
+    }
 
-import { View, StyleSheet, Dimensions } from 'react-native';
+    render() {
+        let data = []
+        for (let i in this.props.monthData) {
+            data.push(this.props.monthData[i])
+        }
 
-// Percentages work in plain react-native but aren't supported in Expo yet, workaround with this or onLayout
-const { width, height } = Dimensions.get('window');
+        const Line = ({ line }) => (
+            <Path
+                key={'line'}
+                d={line}
+                stroke={this.props.graphLine}
+                fill={'none'}
+            />
+        )
 
-export default class SvgExample extends React.Component {
-  render() {
-    return (
-      <View
-        style={[
-          StyleSheet.absoluteFill,
-          { alignItems: 'center', justifyContent: 'center' },
-        ]}>
-        <Svg
-    height="100%"
-    width="100%"
->
-    <Line
-        x1="0"
-        y1="0"
-        x2="100"
-        y2="100"
-        stroke={this.props.graphColor}
-        strokeWidth="2"
-    />
-</Svg>
-      </View>
-    );
-  }
+        const Gradient = ({ index }) => (
+            <Defs key={index}>
+                <LinearGradient id={'gradient'} x1={'0%'} y={'0%'} x2={'0%'} y2={'100%'}>
+                    <Stop offset={'0%'} stopColor={this.props.graphFill} stopOpacity={0.8}/>
+                    <Stop offset={'28%'} stopColor={'rgb(0, 0, 0)'} stopOpacity={0}/>
+                </LinearGradient>
+            </Defs>
+        )
+        
+        return (
+            <AreaChart
+                style={{ height: 75 }}
+                data={data}
+                contentInset={{ top: 0, bottom: 10 }}
+                svg={{ fill: 'url(#gradient)' }}
+            >
+                <Grid/>
+                <Line/>
+                <Gradient />
+            </AreaChart>
+        )
+    }
 }
+
+export default StockGraph

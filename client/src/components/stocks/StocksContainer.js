@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start'
     },
     stocksContainer : {
-        paddingTop: 55
+        paddingTop: 55,
+        paddingBottom: 55
     },
     text : {
         color: 'white'

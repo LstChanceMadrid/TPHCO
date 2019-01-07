@@ -24,7 +24,12 @@ class Stock extends Component {
             axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1m`).then(chartDay => {
                 const stockChartDay = chartDay.data
                 const lengthDay = stockChartDay.length
-                
+                let monthData = []
+
+                for (let i in chartDay.data) {
+                    monthData.push(parseFloat(chartDay.data[i].close))
+                }
+
                 axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chartMinute => {
                     const stockChartIntra = chartMinute.data
                     let lengthMinute = stockChartIntra.length
@@ -36,7 +41,8 @@ class Stock extends Component {
                             name : stockCompany.companyName,
                             date : stockChartIntra[lengthMinute - 1].date,
                             changeOverTime : stockChartIntra[lengthMinute - 1].close - stockChartDay[lengthDay-1].close, 
-                            current : stockChartIntra[lengthMinute - 1].close
+                            current : stockChartIntra[lengthMinute - 1].close,
+                            monthData : monthData
                         }
                     })
                 })
@@ -50,7 +56,7 @@ class Stock extends Component {
 
     render() {
         
-        let date = this.state.stock.date
+        let monthData = this.state.stock.monthData
         let changeOverTime = this.state.stock.changeOverTime
         let name = this.state.stock.name
         let symbol = this.state.stock.symbol
@@ -61,17 +67,15 @@ class Stock extends Component {
            
            return (
             <View style={styles.container}>
-            <ScrollView horizontal={true}>
                 <View style={styles.stockInfo}>
                 
                     <Text style={styles.symbol}>{symbol}</Text>
 
                     <Text style={styles.name}>{name}</Text>
                 </View>
-                </ScrollView>
-                
+
                 <View style={styles.chartWrapper}>
-                    <StockGraph graphColor={'green'}/>
+                    <StockGraph symbol={symbol} graphLine={'green'} graphFill={'rgba(0, 255, 0, 0.2)'} monthData={monthData} />
                 </View>
                 
 
@@ -90,15 +94,13 @@ class Stock extends Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.stockInfo}>
-                    <ScrollView horizontal={true}>
                     <Text style={styles.symbol}>{symbol}</Text>
 
                     <Text style={styles.name}>{name}</Text>
-                    </ScrollView>
                     </View>
 
                     <View style={styles.chartWrapper}>
-                        <StockGraph graphColor={'red'} />
+                        <StockGraph symbol={symbol} graphLine={'red'} graphFill={'rgba(255, 0, 0, 0.2)'} monthData={monthData} />
                     </View>
 
                     <View style={styles.stockPrice}>
@@ -128,11 +130,14 @@ const styles = StyleSheet.create({
     stockInfo : {
         flex : 1,
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '33%',
+        overflow: 'scroll'
     },
     stockPrice : {
         flex : 1,
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        justifyContent: 'center'
     },
     symbol : {
         color: 'white',
@@ -174,6 +179,7 @@ const styles = StyleSheet.create({
     chartWrapper: {
         flex: 1,
         padding: 10,
+        width: '33%'
     }
 
 })

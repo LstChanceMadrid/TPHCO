@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import styles from './styles/styles'
 
 
 class Footer extends Component {
@@ -10,16 +11,23 @@ class Footer extends Component {
         const footerLayout = (middleButton) => {
             return (
                 <View style={styles.container}>
-                    <TouchableOpacity style={styles.button} onPress={() => Navigation.push(this.props.component, {
-                        component: {
-                            name: 'EnergyTechWeekly',
-                            options: {
-                                topBar : {
-                                    visible : 'false'
-                                }
+                    <TouchableOpacity style={styles.button} onPress={() => {
+                        if (this.props.component === "Dashboard") {
+                            Navigation.push(this.props.component, {
+                                component: {
+                                    name: 'EnergyTechWeekly',
+                                    options: {
+                                        topBar : {
+                                            visible : 'false'
+                                            }
+                                        }
+                                    }
+                                })
+                            } else {
+                                return
                             }
                         }
-                    } )}>
+                    }>
                         <Text style={styles.buttonText}>Energy Technology</Text>
                     </TouchableOpacity>
 
@@ -53,38 +61,3 @@ class Footer extends Component {
 }
 
 export default Footer
-
-const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'absolute',
-        bottom: 0,
-        paddingLeft: 20,
-        paddingRight: 20,
-        width: '100%',
-        height: 75,
-        backgroundColor : 'rgba(15, 15, 15, 1)',
-        zIndex: 2
-    },
-    button : {
-        width: '30%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderRadius: 5,
-        borderColor: 'white',
-        backgroundColor: 'blue',
-    },
-    buttonText : {
-        paddingHorizontal: 5,
-        textAlign: 'center',
-        fontSize: 10,
-        color: 'white'
-    }
-})
