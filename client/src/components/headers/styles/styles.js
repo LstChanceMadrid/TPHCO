@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 export default styles = StyleSheet.create({
+    // energy tech
     eTHContainer : {
         padding: 10,
         top: 0
@@ -25,6 +26,7 @@ export default styles = StyleSheet.create({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
+    // stocks
       sHContainer : {
         flex: 1,
         position: 'absolute',
@@ -66,6 +68,7 @@ export default styles = StyleSheet.create({
         fontStyle: "italic",
         color: 'rgba(110, 90, 25, 1)'
     },
+    // news
     nHContainer : {
         backgroundColor : 'rgba(15, 15, 15, 1)',
         padding: 10

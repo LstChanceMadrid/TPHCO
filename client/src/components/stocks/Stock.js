@@ -16,12 +16,11 @@ class Stock extends Component {
         }
     }
 
-    
-    componentWillMount = () => {
-        axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/company`).then(company => {
+    stockInfo = (symbol) => {
+        axios.get(`https://api.iextrading.com/1.0/stock/${symbol}/company`).then(company => {
             const stockCompany = company.data
 
-            axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1m`).then(chartDay => {
+            axios.get(`https://api.iextrading.com/1.0/stock/${symbol}/chart/1m`).then(chartDay => {
                 const stockChartDay = chartDay.data
                 const lengthDay = stockChartDay.length
                 let monthData = []
@@ -30,7 +29,7 @@ class Stock extends Component {
                     monthData.push(parseFloat(chartDay.data[i].close))
                 }
 
-                axios.get(`https://api.iextrading.com/1.0/stock/${this.props.symbol}/chart/1d`).then(chartMinute => {
+                axios.get(`https://api.iextrading.com/1.0/stock/${symbol}/chart/1d`).then(chartMinute => {
                     const stockChartIntra = chartMinute.data
                     let lengthMinute = stockChartIntra.length
 
@@ -50,8 +49,9 @@ class Stock extends Component {
         })
     }
 
-
-
+    componentWillMount = () => {
+        this.stockInfo(this.props.symbol)
+    }
 
 
     render() {

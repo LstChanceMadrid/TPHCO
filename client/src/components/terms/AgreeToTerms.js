@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios'
 import {StyleSheet, Text, View, Button, Image, TouchableOpacity} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as screen from '../../constants/screenLayouts'
@@ -30,6 +31,10 @@ export default class AgreeToTerms extends Component {
   }
 
   acceptTerms = () => {
+    axios.post('http://localhost:5000/timeStamp', {
+      usernameOrEmail: this.props.usernameOrEmail
+    })
+
     Navigation.setRoot({
       root: {
         stack: {
@@ -46,6 +51,7 @@ export default class AgreeToTerms extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <Text>{this.props.usernameOrEmail}</Text>
         <Image style={styles.logo} resizeMode={'contain'} source={require('../../styles/images/tphco.png')} />
         
         <View>

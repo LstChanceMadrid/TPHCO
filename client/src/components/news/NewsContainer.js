@@ -9,7 +9,7 @@ export default class News extends Component {
                 <NewsHeader />
                 
                 <ScrollView>
-                    <Text style={styles.text}>News api stuff</Text>
+                    <Text style={styles.text}>News API</Text>
                 </ScrollView>
             </View>
         )

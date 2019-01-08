@@ -74,6 +74,24 @@ app.post('/login', (req, res) => {
     }).catch(e => console.log('alt error', e))
 })
 
+app.post('/timeStamp', (req, res) => {
+    let usernameOrEmail = req.body.usernameOrEmail
+
+    db.one('SELECT id, username, email FROM users WHERE username = $1 OR email = $1', [usernameOrEmail]).then(response => {
+        console.log(response)
+        let username = response.username
+        let email = response.email
+        let date = new Date()
+        let timestamp = new Date()
+
+        db.any('INSERT INTO timestamps (username, email, date, timestamp) VALUES ($1, $2, $3, $4)', [username, email, date, timestamp])
+    })
+})
+
+
+
+
+
 app.post('/altstory', (req, res) => {
     let title = req.body.title
 

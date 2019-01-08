@@ -64,26 +64,28 @@ export default class Register extends Component {
       })
     }
 
+    const pCT = 'rgba(0, 0, 0, 0.5)'
+    
     return (
       <View style={styles.container}>
         <View style={styles.registerContainer}>
           <Text style={styles.title}>Register</Text>
           <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
-          <TextInput style={styles.input} placeholder="Username*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(username) => this.setState({...this.state, username})}></TextInput>
+          <TextInput style={styles.input} placeholder="Username*" autoCapitalize='none' placeholderTextColor={pCT} onChangeText={(username) => this.setState({...this.state, username})}></TextInput>
 
-          <TextInput style={styles.input} placeholder="Email*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(email) => this.setState({...this.state, email})}></TextInput>
+          <TextInput style={styles.input} placeholder="Email*" autoCapitalize='none' placeholderTextColor={pCT} onChangeText={(email) => this.setState({...this.state, email})}></TextInput>
 
           <View style={styles.nameContainer}>
-            <TextInput style={styles.name} placeholder="First Name*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(firstName) => this.setState({...this.state, firstName})}></TextInput>
+            <TextInput style={styles.name} placeholder="First Name*" autoCapitalize='none' placeholderTextColor={pCT} onChangeText={(firstName) => this.setState({...this.state, firstName})}></TextInput>
 
-            <TextInput style={styles.name} placeholder="Last Name*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(lastName) => this.setState({...this.state, lastName})}></TextInput>
+            <TextInput style={styles.name} placeholder="Last Name*" autoCapitalize='none' placeholderTextColor={pCT} onChangeText={(lastName) => this.setState({...this.state, lastName})}></TextInput>
           </View>
 
-          <TextInput style={styles.input} placeholder="Company*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(company) => this.setState({...this.state, company})}></TextInput>
+          <TextInput style={styles.input} placeholder="Company*" autoCapitalize='none' placeholderTextColor={pCT} onChangeText={(company) => this.setState({...this.state, company})}></TextInput>
           
-          <TextInput style={styles.input} placeholder="Position*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(position) => this.setState({...this.state, position})}></TextInput>
+          <TextInput style={styles.input} placeholder="Position*" autoCapitalize='none' placeholderTextColor={pCT} onChangeText={(position) => this.setState({...this.state, position})}></TextInput>
 
-          <TextInput style={styles.input} placeholder="Password*" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(password) => this.setState({...this.state, password})}></TextInput>
+          <TextInput style={styles.input} placeholder="Password*" autoCapitalize='none' placeholderTextColor={pCT} secureTextEntry={true} onChangeText={(password) => this.setState({...this.state, password})}></TextInput>
 
           <TouchableOpacity style={styles.registerButton} onPress={() => authenticate()}>
             <Text style={styles.registerButtonText}>Register</Text>

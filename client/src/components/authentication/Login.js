@@ -40,7 +40,10 @@ export default class Login extends Component {
         if (response.data.isAuthenticated) {
         Navigation.push(this.props.componentId, {
           component: {
-            name: 'AgreeToTerms'
+            name: 'AgreeToTerms',
+            passProps: {
+              usernameOrEmail: this.state.usernameOrEmail
+            }
             }
           })
         } else {
@@ -60,7 +63,7 @@ export default class Login extends Component {
 
           <TextInput style={styles.input} placeholder="Username or Email" placeholderTextColor='rgba(0, 0, 0, 0.5)' autoCapitalize='none' onChangeText={(usernameOrEmail) => this.setState({...this.state, usernameOrEmail})}></TextInput>
           
-          <TextInput style={styles.input} placeholder="Password" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={(password) => this.setState({...this.state, password})}></TextInput>
+          <TextInput style={styles.input} placeholder="Password" autoCapitalize='none' placeholderTextColor='rgba(0, 0, 0, 0.5)' secureTextEntry={true} onChangeText={(password) => this.setState({...this.state, password})}></TextInput>
 
           <TouchableOpacity style={styles.loginButton} onPress={() => authenticate()}>
             <Text style={styles.loginButtonText}>Login</Text>
