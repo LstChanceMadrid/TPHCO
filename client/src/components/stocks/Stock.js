@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import axios from 'axios'
 import StockGraph from './StockGraph'
 
@@ -96,7 +96,7 @@ class Stock extends Component {
                     <View style={styles.stockInfo}>
                     <Text style={styles.symbol}>{symbol}</Text>
 
-                    <Text style={styles.name}>{name}</Text>
+                    <Text style={styles.name} numberOfLines={1} ellipsizeMode={"tail"}>{name}</Text>
                     </View>
 
                     <View style={styles.chartWrapper}>
