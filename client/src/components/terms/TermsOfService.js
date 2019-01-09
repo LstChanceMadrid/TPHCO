@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import {StyleSheet, Text, Linking, ScrollView, View} from 'react-native';
 
-export default class TermsOfService extends Component {
+class TermsOfService extends Component {
   
   render() {
     return (
@@ -22,6 +23,15 @@ export default class TermsOfService extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    username : state.username
+  }
+}
+
+
+export default connect(mapStateToProps)(TermsOfService)
 
 const styles = StyleSheet.create({
   container : {

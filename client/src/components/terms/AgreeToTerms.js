@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios'
+import { connect } from 'react-redux'
 import {StyleSheet, Text, View, Button, Image, TouchableOpacity} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as screen from '../../constants/screenLayouts'
 
 
 // type Props = {}; Component<Props>
-export default class AgreeToTerms extends Component {
+class AgreeToTerms extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -51,7 +52,6 @@ export default class AgreeToTerms extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>{this.props.usernameOrEmail}</Text>
         <Image style={styles.logo} resizeMode={'contain'} source={require('../../styles/images/tphco.png')} />
         
         <View>
@@ -69,6 +69,15 @@ export default class AgreeToTerms extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    username : state.username
+  }
+}
+
+
+export default connect(mapStateToProps)(AgreeToTerms)
 
 const styles = StyleSheet.create({
   container: {

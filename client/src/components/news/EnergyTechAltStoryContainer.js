@@ -45,7 +45,7 @@ export default class EnergyTechAltStoryContainer extends Component {
         return (
             <View style={styles.container}>
                 {storyArr()}
-                <Text>HELLO</Text>
+                <Text></Text>
             </View>
         )
     }

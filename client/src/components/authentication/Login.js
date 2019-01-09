@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import axios from 'axios'
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as screen from '../../constants/screenLayouts'
 
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -77,6 +78,16 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    username : state.username
+  }
+}
+
+
+export default connect(mapStateToProps)(Login)
+
 
 const styles = StyleSheet.create({
   container: {

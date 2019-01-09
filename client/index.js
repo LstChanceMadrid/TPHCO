@@ -1,21 +1,24 @@
+import React from 'react'
 import { AsyncStorage } from 'react-native'
+import { createStore } from 'redux'
 import { Navigation } from 'react-native-navigation'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 
-import axios from 'axios'
+
 import * as screen from './src/constants/screenLayouts'
 import AgreeToTerms from './src/components/terms/AgreeToTerms'
+import Dashboard from './src/components/Dashboard';
+import EnergyTechWeekly from './src/components/EnergyTechWeekly';
 import Login from './src/components/authentication/Login'
 import Register from './src/components/authentication/Register'
 import TermsOfService from './src/components/terms/TermsOfService';
-import Dashboard from './src/components/Dashboard';
-import EnergyTechWeekly from './src/components/EnergyTechWeekly';
+
 
 
 const initialState = {
     isAuthenticated: false,
     termsAccepted: false,
+    username: 'johnny'
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -26,12 +29,53 @@ const rootReducer = (state = initialState, action) => {
 const store = createStore(rootReducer)
 
 
-Navigation.registerComponentWithRedux('AgreeToTerms', () => AgreeToTerms, Provider, store)
-Navigation.registerComponentWithRedux('Register', () => Register, Provider, store)
-Navigation.registerComponentWithRedux('TermsOfService', () => TermsOfService, Provider, store)
-Navigation.registerComponentWithRedux('Login', () => Login, Provider, store)
-Navigation.registerComponentWithRedux('Dashboard', () => Dashboard, Provider, store)
-Navigation.registerComponentWithRedux('EnergyTechWeekly', () => EnergyTechWeekly, Provider, store)
+Navigation.registerComponent('AgreeToTerms', () => (props) => (
+    <Provider store={store}>
+        <AgreeToTerms {...props} />
+    </Provider>
+), () => AgreeToTerms)
+
+Navigation.registerComponent('Register', () => (props) => (
+    <Provider store={store}>
+        <Register {...props} />
+    </Provider>
+), () => Register)
+
+Navigation.registerComponent('TermsOfService', () => (props) => (
+    <Provider store={store}>
+        <TermsOfService {...props} />
+    </Provider>
+), () => TermsOfService)
+
+Navigation.registerComponent('Login', () => (props) => (
+    <Provider store={store}>
+        <Login {...props} />
+    </Provider>
+), () => Login)
+
+Navigation.registerComponent('Dashboard', () => (props) => (
+    <Provider store={store}>
+        <Dashboard {...props} />
+    </Provider>
+), () => Dashboard)
+
+Navigation.registerComponent('EnergyTechWeekly', () => (props) => (
+    <Provider store={store}>
+        <EnergyTechWeekly {...props} />
+    </Provider>
+), () => EnergyTechWeekly)
+
+Navigation.registerComponent('AgreeToTerms', () => (props) => (
+    <Provider store={store}>
+        <AgreeToTerms {...props} />
+    </Provider>
+), () => AgreeToTerms)
+
+// Navigation.registerComponent('Register', () => Register, Provider, store)
+// Navigation.registerComponent('TermsOfService', () => TermsOfService, Provider, store)
+// Navigation.registerComponent('Login', () => Login, Provider, store)
+// Navigation.registerComponent('Dashboard', () => Dashboard, Provider, store)
+// Navigation.registerComponent('EnergyTechWeekly', () => EnergyTechWeekly, Provider, store)
 
 _retrieveAsyncStorageLoginStatus = async () => {
     try {

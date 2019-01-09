@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import {Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import axios from 'axios'
 import * as screen from '../../constants/screenLayouts'
 
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props)
     
@@ -99,6 +100,16 @@ export default class Register extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    username : state.username
+  }
+}
+
+
+export default connect(mapStateToProps)(Register)
+
 
 const styles = StyleSheet.create({
   container: {

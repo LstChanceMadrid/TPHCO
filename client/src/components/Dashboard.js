@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import {StyleSheet, View, Image} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as screen from '../constants/screenLayouts'
@@ -8,7 +9,7 @@ import Footer from './footers/Footer'
 
 
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
 
   constructor(props) {
     super(props)
@@ -30,6 +31,7 @@ export default class Dashboard extends Component {
       <View style={styles.container}>
 
       <StocksContainer />
+
       <News />
       
       <Image style={styles.logo} resizeMode={'contain'} source={require('../styles/images/tphco.png')} />
@@ -39,6 +41,16 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    username : state.username
+  }
+}
+
+
+export default connect(mapStateToProps)(Dashboard)
+
 
 const styles = StyleSheet.create({
   container: {

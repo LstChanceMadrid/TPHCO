@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import EnergyTechHeader from './headers/EnergyTechHeader';
 import Footer from './footers/Footer';
@@ -30,7 +31,14 @@ class EnergyTechWeekly extends Component {
 }
 
 
-export default EnergyTechWeekly
+const mapStateToProps = state => {
+    return {
+        username : state.username
+    }
+  }
+  
+  
+export default connect(mapStateToProps)(EnergyTechWeekly)
 
 const styles = StyleSheet.create({
     container : {
